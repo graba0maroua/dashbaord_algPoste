@@ -28,8 +28,8 @@ const mockNext3Days = [
     date: "2024-08-15",
     day: "Aujourd'hui",
     predicted_withdrawal: 3018380.5,
+    real_withdrawal: 2980000,
     remaining_cash: 4484124,
-    coverage_days: 1.49,
     zone: "safe",
     confidence: 94.2,
     error_percentage: 1.31,
@@ -38,8 +38,8 @@ const mockNext3Days = [
     date: "2024-08-16",
     day: "Demain",
     predicted_withdrawal: 2272477,
+    real_withdrawal: 2210000,
     remaining_cash: 2211647,
-    coverage_days: 0.97,
     zone: "moderate",
     confidence: 91.8,
     error_percentage: 2.15,
@@ -48,13 +48,14 @@ const mockNext3Days = [
     date: "2024-08-17",
     day: "Après-demain",
     predicted_withdrawal: 2544190,
+    real_withdrawal: 2344190, 
     remaining_cash: -332543,
-    coverage_days: 0.0,
     zone: "danger",
     confidence: 89.5,
     error_percentage: 3.94,
   },
 ]
+
 
 const mockPredictionData = [
   { date: "2024-08-11", xgboost: 7502504.5, nhits: 7200000, actual: 7405549 },
@@ -224,48 +225,47 @@ export default function BureauDePostePage() {
                 <TableRow>
                   <TableHead>Jour</TableHead>
                   <TableHead>Date</TableHead>
+                  <TableHead className="text-right">Retrait Réel</TableHead>
                   <TableHead className="text-right">Retrait Prévu</TableHead>
                   <TableHead className="text-right">Solde Restant</TableHead>
-                  <TableHead className="text-center">Couverture</TableHead>
                   <TableHead className="text-center">Confiance</TableHead>
                   <TableHead className="text-center">Erreur</TableHead>
                   <TableHead className="text-center">État</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {mockNext3Days.map((day, index) => (
-                  <TableRow key={index} className={day.zone === "danger" ? "bg-red-50" : ""}>
-                    <TableCell className="font-medium">{day.day}</TableCell>
-                    <TableCell>{new Date(day.date).toLocaleDateString("fr-FR")}</TableCell>
-                    <TableCell className="text-right font-mono">{formatCurrency(day.predicted_withdrawal)}</TableCell>
-                    <TableCell
-                      className={`text-right font-mono ${day.remaining_cash < 0 ? "text-red-600 font-bold" : ""}`}
-                    >
-                      {day.remaining_cash < 0 ? "-" : ""}
-                      {formatCurrency(day.remaining_cash)}
-                    </TableCell>
-                    <TableCell className="text-center">
-                      <span
-                        className={`font-semibold ${day.coverage_days < 1 ? "text-red-600" : day.coverage_days < 2 ? "text-yellow-600" : "text-green-600"}`}
-                      >
-                        {((day.coverage_days * 100) / 3).toFixed(1)}%
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-center">
-                      <span className="font-medium">{day.confidence}%</span>
-                    </TableCell>
-                    <TableCell className="text-center">
-                      <span className="font-medium text-orange-600">{day.error_percentage}%</span>
-                    </TableCell>
-                    <TableCell className="text-center">
-                      <div className="flex items-center justify-center gap-2">
-                        {getZoneIcon(day.zone)}
-                        <Badge className={getZoneColor(day.zone)}>{day.zone.toUpperCase()}</Badge>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+  {mockNext3Days.map((day, index) => (
+    <TableRow key={index} className={day.zone === "danger" ? "bg-red-50" : ""}>
+      <TableCell className="font-medium">{day.day}</TableCell>
+      <TableCell>{new Date(day.date).toLocaleDateString("fr-FR")}</TableCell>
+      <TableCell className="text-right font-mono text-gray-700">
+        {day.real_withdrawal ? formatCurrency(day.real_withdrawal) : "—"}
+      </TableCell>
+      <TableCell className="text-right font-mono">
+        {formatCurrency(day.predicted_withdrawal)}
+      </TableCell>
+      <TableCell
+        className={`text-right font-mono ${day.remaining_cash < 0 ? "text-red-600 font-bold" : ""}`}
+      >
+        {day.remaining_cash < 0 ? "-" : ""}
+        {formatCurrency(day.remaining_cash)}
+      </TableCell>
+      <TableCell className="text-center">
+        <span className="font-medium">{day.confidence}%</span>
+      </TableCell>
+      <TableCell className="text-center">
+        <span className="font-medium text-orange-600">{day.error_percentage}%</span>
+      </TableCell>
+      <TableCell className="text-center">
+        <div className="flex items-center justify-center gap-2">
+          {getZoneIcon(day.zone)}
+          <Badge className={getZoneColor(day.zone)}>{day.zone.toUpperCase()}</Badge>
+        </div>
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
+
             </Table>
           </CardContent>
         </Card>
