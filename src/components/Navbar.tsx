@@ -1,8 +1,8 @@
-"use client";
-
-import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+"use client"
+import { LogOut, Moon, Settings, Sun, User, MapPin, Table, BarChart3 } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,24 +10,61 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import { useTheme } from "next-themes";
-import { SidebarTrigger, useSidebar } from "./ui/sidebar";
+} from "./ui/dropdown-menu"
+import { Button } from "./ui/button"
+import { useTheme } from "next-themes"
+import { SidebarTrigger, useSidebar } from "./ui/sidebar"
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
 
-const Navbar = () => {
-  const { theme, setTheme } = useTheme();
-  const { toggleSidebar } = useSidebar();
+interface NavbarProps {
+  activeTab?: string
+  onTabChange?: (tab: string) => void
+}
+
+const Navbar = ({ activeTab, onTabChange }: NavbarProps) => {
+  const { theme, setTheme } = useTheme()
+  const { toggleSidebar } = useSidebar()
+  const pathname = usePathname()
+
+  // Check if we're on the main dashboard page
+  const isMainPage = pathname === "/"
+
   return (
-    <nav className="p-4 flex items-center justify-between sticky top-0 bg-background z-10">
+    <nav className="p-4 flex items-center justify-between sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b">
       {/* LEFT */}
-      <SidebarTrigger />
-      {/* <Button variant="outline" onClick={toggleSidebar}>
-        Custom Button
-      </Button> */}
+      <div className="flex items-center gap-4">
+        <SidebarTrigger />
+
+        {/* Dashboard Tabs - Only show on main page */}
+        {isMainPage && activeTab && onTabChange && (
+          <Tabs value={activeTab} onValueChange={onTabChange} className="hidden md:block">
+            <TabsList className="grid grid-cols-3">
+              <TabsTrigger value="carte" className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                <span className="hidden lg:inline">Carte Interactive</span>
+                <span className="lg:hidden">Carte</span>
+              </TabsTrigger>
+              <TabsTrigger value="tableau" className="flex items-center gap-2">
+                <Table className="h-4 w-4" />
+                <span className="hidden lg:inline">Tableau</span>
+                <span className="lg:hidden">Table</span>
+              </TabsTrigger>
+              <TabsTrigger value="statistiques" className="flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" />
+                <span className="hidden lg:inline">Statistiques</span>
+                <span className="lg:hidden">Stats</span>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        )}
+      </div>
+
       {/* RIGHT */}
       <div className="flex items-center gap-4">
-        <Link href="/">Dashboard</Link>
+        <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+          Dashboard
+        </Link>
+
         {/* THEME MENU */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -38,17 +75,12 @@ const Navbar = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setTheme("light")}>
-              Light
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("dark")}>
-              Dark
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("system")}>
-              System
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
         {/* USER MENU */}
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -68,7 +100,7 @@ const Navbar = () => {
               <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem variant="destructive">
+            <DropdownMenuItem className="text-destructive">
               <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
               Logout
             </DropdownMenuItem>
@@ -76,7 +108,7 @@ const Navbar = () => {
         </DropdownMenu>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

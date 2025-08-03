@@ -118,21 +118,21 @@ const AppSidebar = () => {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/#">
+                  <Link href="/">
                     <NotebookTabs /> Vue Nationale
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/#">
+                  <Link href="/wilaya">
                     <Building /> Vue par wilaya
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/#">
+                  <Link href="/bureau">
                     <Landmark /> Vue par bureau de poste
                   </Link>
                 </SidebarMenuButton>
