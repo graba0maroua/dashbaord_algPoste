@@ -19,210 +19,7 @@ import {
 import { Command, CommandList, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import MapComponent from "@/components/MapWilaya"
-
-// Sample data for Chlef wilaya
-const chlefBureaux = [
-  {
-    code: "2419",
-    comptableCode: "2059.0",
-    name: "OULED FETTI",
-    lat: 36.1110000610352,
-    lng: 1.06289994716644,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2410",
-    comptableCode: "2074.0",
-    name: "OULED BERRADJAH",
-    lat: 36.1525993347168,
-    lng: 1.00279998779297,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2202",
-    comptableCode: "2034.0",
-    name: "BIR SAF SAF",
-    lat: 36.2048988342285,
-    lng: 1.59270000457764,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2404",
-    comptableCode: "2083.0",
-    name: "BORDJ BAAL",
-    lat: 36.2778015136719,
-    lng: 0.845399975776672,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2316",
-    comptableCode: "2065.0",
-    name: "TALASSA",
-    lat: 36.4266014099121,
-    lng: 1.09080004692078,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2204",
-    comptableCode: "2053.0",
-    name: "PETIT BARRAGE",
-    lat: 36.089298248291,
-    lng: 1.59150004386902,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2215",
-    comptableCode: "2055.0",
-    name: "CAPER",
-    lat: 36.1617012023926,
-    lng: 1.17789995670319,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2502",
-    comptableCode: "2047.0",
-    name: "KECHACHDA",
-    lat: 36.3545989990234,
-    lng: 1.26859998703003,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2326",
-    comptableCode: "2093.0",
-    name: "HAI EL FELLAGUIA",
-    lat: 36.3395004272461,
-    lng: 1.40209996700287,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2220",
-    comptableCode: "2077.0",
-    name: "OULED BOUALI",
-    lat: 36.2092018127441,
-    lng: 1.4536999464035,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2207",
-    comptableCode: "2031.0",
-    name: "HARCHOUN",
-    lat: 36.111499786377,
-    lng: 1.50510001182556,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2403",
-    comptableCode: "2069.0",
-    name: "BENI OUAZENE",
-    lat: 35.9870986938477,
-    lng: 1.31429994106293,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2302",
-    comptableCode: "2060.0",
-    name: "MOUSSADEK",
-    lat: 36.3543014526367,
-    lng: 1.00849997997284,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2203",
-    comptableCode: "2020.0",
-    name: "CHETTIA VSA",
-    lat: 36.1864013671875,
-    lng: 1.25020003318787,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2406",
-    comptableCode: "2028.0",
-    name: "EL-ATMANIA",
-    lat: 36.0185012817383,
-    lng: 1.16149997711182,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2429",
-    comptableCode: "2096.0",
-    name: "LOCALITE D'AIN SERAGUE,HERENFA",
-    lat: 36.2436981201172,
-    lng: 1.05659997463226,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2428",
-    comptableCode: "2095.0",
-    name: "CENTRE VILLE D'AIN MERANE,CHLEF",
-    lat: 36.1633987426758,
-    lng: 0.981100022792816,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2321",
-    comptableCode: "2081.0",
-    name: "KAHLOUL",
-    lat: 36.4203987121582,
-    lng: 1.2360999584198,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2303",
-    comptableCode: "2039.0",
-    name: "BENAIRIA",
-    lat: 36.3550987243652,
-    lng: 1.37580001354218,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2307",
-    comptableCode: "2070.0",
-    name: "BREIRA",
-    lat: 36.4490013122559,
-    lng: 1.61539995670319,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2110",
-    comptableCode: "2022.0",
-    name: "ZONE 3",
-    lat: 36.1369018554688,
-    lng: 1.30490005016327,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2117",
-    comptableCode: "2016.0",
-    name: "ZONE 2",
-    lat: 36.1549987792969,
-    lng: 1.35239994525909,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2115",
-    comptableCode: "2057.0",
-    name: "HAY CHEGGA",
-    lat: 36.1920013427734,
-    lng: 1.34669995307922,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2123",
-    comptableCode: "2098.0",
-    name: "RN N°04",
-    lat: 36.1558532714844,
-    lng: 1.30460274219513,
-    wilaya: "Chlef",
-  },
-  {
-    code: "2430",
-    comptableCode: "2097.0",
-    name: "DHARIDJ",
-    lat: 36.0853538513184,
-    lng: 1.23935604095459,
-    wilaya: "Chlef",
-  },
-]
+import { allBureauxData } from "@/data/bureau-data"
 
 const exportToCSV = (data: any[], filename: string) => {
   const headers = ["N°", "Code Comptable", "Nom de Bureau", "Coordonnées", "État"]
@@ -386,27 +183,32 @@ export default function WilayaSupervision() {
   const [pageSize, setPageSize] = useState(10)
   const [open, setOpen] = useState(false)
 
-  // For demo purposes, we'll use Chlef data for all wilayas
-  const bureaux = useMemo(() => {
-    return chlefBureaux.map((bureau) => ({
-      ...bureau,
-      state: generateBureauState(bureau.code),
-      wilaya: selectedWilaya,
-    }))
-  }, [selectedWilaya])
+  // Get bureaux for selected wilaya
+ const bureaux = useMemo(() => {
+  const wilayaData = allBureauxData.filter((bureau) => bureau.wilaya_name === selectedWilaya)
+  return wilayaData.map((bureau) => ({
+    code: Number(bureau.code_postale),
+    comptableCode: Number(bureau.code_comptable),
+    name: bureau.address,
+    lat: bureau.latitude,
+    lng: bureau.longitude,
+    state: generateBureauState(String(bureau.code_comptable)),
+    wilaya: bureau.wilaya_name,
+  }))
+}, [selectedWilaya])
+
 
   const filteredBureaux = useMemo(() => {
-    return bureaux.filter((bureau) => {
-      const matchesSearch =
-        bureau.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        bureau.code.includes(searchTerm) ||
-        bureau.comptableCode.includes(searchTerm)
+  return bureaux.filter((bureau) => {
+    const matchesSearch =
+      bureau.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      String(bureau.code).includes(searchTerm) ||
+      String(bureau.comptableCode).includes(searchTerm)
+    const matchesState = stateFilter === "all" || bureau.state === stateFilter
+    return matchesSearch && matchesState
+  })
+}, [bureaux, searchTerm, stateFilter])
 
-      const matchesState = stateFilter === "all" || bureau.state === stateFilter
-
-      return matchesSearch && matchesState
-    })
-  }, [bureaux, searchTerm, stateFilter])
 
   const paginatedBureaux = useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize
@@ -448,6 +250,14 @@ export default function WilayaSupervision() {
     }
   }
 
+  const handleWilayaChange = (wilayaName: string) => {
+    setSelectedWilaya(wilayaName)
+    setCurrentPage(1)
+    setSearchTerm("")
+    setStateFilter("all")
+    setOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -482,11 +292,7 @@ export default function WilayaSupervision() {
                           <CommandItem
                             key={wilaya.code}
                             value={`${wilaya.code} ${wilaya.name}`}
-                            onSelect={() => {
-                              setSelectedWilaya(wilaya.name)
-                              setCurrentPage(1)
-                              setOpen(false)
-                            }}
+                            onSelect={() => handleWilayaChange(wilaya.name)}
                           >
                             <span className="font-mono text-sm text-gray-500 mr-2">{wilaya.code}</span>
                             {wilaya.name}
@@ -513,7 +319,6 @@ export default function WilayaSupervision() {
               <p className="text-xs text-muted-foreground">Bureaux de poste dans {selectedWilaya}</p>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">État Sûr</CardTitle>
@@ -526,7 +331,6 @@ export default function WilayaSupervision() {
               </p>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">État Modéré</CardTitle>
@@ -539,7 +343,6 @@ export default function WilayaSupervision() {
               </p>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">État Danger</CardTitle>
@@ -554,19 +357,20 @@ export default function WilayaSupervision() {
           </Card>
         </div>
 
-          {/* Interactive Map */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                Carte Interactive - {selectedWilaya}
-              </CardTitle>
-              <CardDescription>Localisation des bureaux de poste avec état en temps réel</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <MapComponent bureaux={bureaux} />
-            </CardContent>
-          </Card>
+        {/* Interactive Map */}
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MapPin className="h-5 w-5" />
+              Carte Interactive - {selectedWilaya}
+            </CardTitle>
+            <CardDescription>Localisation des bureaux de poste avec état en temps réel</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <MapComponent bureaux={bureaux} selectedWilaya={selectedWilaya} />
+          </CardContent>
+        </Card>
+
         {/* Bureaux Table */}
         <Card>
           <CardHeader>
@@ -575,7 +379,6 @@ export default function WilayaSupervision() {
               Bureaux de Poste - {selectedWilaya}
             </CardTitle>
             <CardDescription>Liste complète des bureaux de poste avec leur état de caisse</CardDescription>
-
             {/* Table Controls */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <div className="relative flex-1">
@@ -590,7 +393,6 @@ export default function WilayaSupervision() {
                   className="pl-10"
                 />
               </div>
-
               <div className="flex gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -638,7 +440,6 @@ export default function WilayaSupervision() {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="gap-2 bg-transparent">
@@ -660,7 +461,6 @@ export default function WilayaSupervision() {
               </div>
             </div>
           </CardHeader>
-
           <CardContent>
             <div className="rounded-md border">
               <Table>
@@ -716,13 +516,11 @@ export default function WilayaSupervision() {
                 </TableBody>
               </Table>
             </div>
-
             {filteredBureaux.length === 0 && (
               <div className="text-center py-8 text-muted-foreground">
                 Aucun bureau trouvé pour les critères de recherche.
               </div>
             )}
-
             {/* Pagination */}
             {filteredBureaux.length > 0 && (
               <div className="flex items-center justify-between space-x-2 py-4">
@@ -747,7 +545,6 @@ export default function WilayaSupervision() {
                     </SelectContent>
                   </Select>
                 </div>
-
                 <div className="flex items-center space-x-6 lg:space-x-8">
                   <div className="flex w-[100px] items-center justify-center text-sm font-medium">
                     Page {currentPage} sur {totalPages}
