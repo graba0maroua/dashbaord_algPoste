@@ -354,7 +354,7 @@ export function WilayasTable() {
   }
 
   return (
-    <Card>
+    <Card className="mt-4 ">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <CardTitle>Liste des Wilayas</CardTitle>

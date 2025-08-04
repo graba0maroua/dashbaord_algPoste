@@ -16,18 +16,13 @@ import { useTheme } from "next-themes"
 import { SidebarTrigger, useSidebar } from "./ui/sidebar"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
 
-interface NavbarProps {
-  activeTab?: string
-  onTabChange?: (tab: string) => void
-}
 
-const Navbar = ({ activeTab, onTabChange }: NavbarProps) => {
+
+const Navbar = () => {
   const { theme, setTheme } = useTheme()
   const { toggleSidebar } = useSidebar()
-  const pathname = usePathname()
 
   // Check if we're on the main dashboard page
-  const isMainPage = pathname === "/"
 
   return (
     <nav className="p-4 flex items-center justify-between sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b">
@@ -35,28 +30,6 @@ const Navbar = ({ activeTab, onTabChange }: NavbarProps) => {
       <div className="flex items-center gap-4">
         <SidebarTrigger />
 
-        {/* Dashboard Tabs - Only show on main page */}
-        {isMainPage && activeTab && onTabChange && (
-          <Tabs value={activeTab} onValueChange={onTabChange} className="hidden md:block">
-            <TabsList className="grid grid-cols-3">
-              <TabsTrigger value="carte" className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span className="hidden lg:inline">Carte Interactive</span>
-                <span className="lg:hidden">Carte</span>
-              </TabsTrigger>
-              <TabsTrigger value="tableau" className="flex items-center gap-2">
-                <Table className="h-4 w-4" />
-                <span className="hidden lg:inline">Tableau</span>
-                <span className="lg:hidden">Table</span>
-              </TabsTrigger>
-              <TabsTrigger value="statistiques" className="flex items-center gap-2">
-                <BarChart3 className="h-4 w-4" />
-                <span className="hidden lg:inline">Statistiques</span>
-                <span className="lg:hidden">Stats</span>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        )}
       </div>
 
       {/* RIGHT */}

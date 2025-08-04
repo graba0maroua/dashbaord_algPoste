@@ -11,7 +11,7 @@ export function OverviewCards() {
   const algerCriticalPercentage = 78
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid mt-4 gap-4 md:grid-cols-2 lg:grid-cols-4">
       {/* Card 1: Most Critical City */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
