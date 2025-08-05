@@ -1,4 +1,4 @@
-import { DashboardContent } from "@/components/dashboard-tabs";
+import { DashboardContent } from "@/components/dashboard-main";
 import { AlgeriaMap } from "@/components/Map";
 import { OverviewCards } from "@/components/OverviewCards";
 

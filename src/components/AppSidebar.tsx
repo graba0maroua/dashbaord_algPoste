@@ -91,29 +91,9 @@ const AppSidebar = () => {
       </SidebarHeader>
       <SidebarSeparator />
       <SidebarContent>
-        {/* <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                  {item.title === "Inbox" && (
-                    <SidebarMenuBadge>24</SidebarMenuBadge>
-                  )}
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup> */}
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarGroupLabel>Map & stats</SidebarGroupLabel>
+            <SidebarGroupLabel>Preéision par Niveau</SidebarGroupLabel>
 
             <SidebarMenu>
               <SidebarMenuItem>
@@ -140,73 +120,17 @@ const AppSidebar = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        {/* COLLAPSABLE */}
-        {/* <Collapsible defaultOpen className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger>
-                Collapsable Group
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/#">
-                        <Projector />
-                        See All Projects
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/#">
-                        <Plus />
-                        Add Project
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible> */}
-        {/* NESTED */}
         <SidebarGroup>
-          <SidebarGroupLabel>Historique</SidebarGroupLabel>
           <SidebarGroupContent>
+            <SidebarGroupLabel>Historiques</SidebarGroupLabel>
+
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/#">
-<TableProperties />                   Rapports
+                  <Link href="/historique">
+                    <NotebookTabs /> Par bureau de poste
                   </Link>
                 </SidebarMenuButton>
-                <SidebarMenuSub>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild>
-                      <Link href="/#">
-                        <Plus />
-Depots                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild>
-                      <Link href="/#">
-                        <Plus />
-Retraits                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild>
-                      <Link href="/#">
-                        <Plus />
-ATM                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                </SidebarMenuSub>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>

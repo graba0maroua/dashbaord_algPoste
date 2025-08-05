@@ -19,7 +19,7 @@ export function DashboardContent() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold tracking-tight">Vue Nationale </h1>
-                <p className="text-muted-foreground">Visualisation géographique des états d'urgence par wilaya</p>
+                <p className="text-muted-foreground">État global et interactif des wilayas en Algérie</p>
               </div>
               <Badge variant="outline" className="animate-pulse">
                 <Activity className="h-3 w-3 mr-1" />

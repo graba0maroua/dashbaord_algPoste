@@ -19436,3 +19436,44 @@ export const allBureauxData: BureauData[] = [
     "wilaya_name": "El Meniaa"
   }
 ]
+// Sample transaction data for the selected bureau
+export interface TransactionData {
+  code_comptable: number
+  bureau_name: string
+  wilaya: string
+  type: string
+  montant: number
+  nombre: number
+  date: string // Add date field in YYYY-MM-DD format
+}
+
+export const generateTransactionData = (bureau: BureauData, startDate?: string, endDate?: string): TransactionData[] => {
+  const baseData: TransactionData = {
+    code_comptable: bureau.code_comptable,
+    bureau_name: bureau.address,
+    wilaya: bureau.wilaya_name,
+    type: "consomation guichet",
+    montant: 0,
+    nombre: 0,
+    date: ""
+  }
+
+  // Generate dates between startDate and endDate (default 2024-2025)
+  const start = startDate ? new Date(startDate) : new Date('2024-01-01')
+  const end = endDate ? new Date(endDate) : new Date('2025-12-31')
+  
+  // Generate sample data with random dates
+  return Array.from({ length: 150 }, (_, i) => {
+    // Generate random date between start and end
+    const randomTime = start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    const randomDate = new Date(randomTime)
+    const formattedDate = randomDate.toISOString().split('T')[0] // YYYY-MM-DD format
+    
+    return {
+      ...baseData,
+      montant: Math.floor(Math.random() * 50000) + 1000,
+      nombre: Math.floor(Math.random() * 100) + 1,
+      date: formattedDate
+    }
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort by date descending
+}
